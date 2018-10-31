@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Bookshelf extends React.Component {
+class BookShelf extends React.Component {
   render () {
     return (
       <div className="bookshelf">
@@ -50,4 +50,4 @@ class Bookshelf extends React.Component {
   }
 }
 
-export default Bookshelf;
+export default BookShelf;
