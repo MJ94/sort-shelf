@@ -8,8 +8,8 @@ import SearchPage from './components/pages/SearchPage.js'
 const App = () => {
   return (
     <div>
-      <Route exact path="/" component={ HomePage.js } />
-      <Route exact path="/search" component={ SearchPage.js} />
+      <Route exact path="/" component={ HomePage } />
+      <Route exact path="/search" component={ SearchPage } />
     </div>
   );
 };
