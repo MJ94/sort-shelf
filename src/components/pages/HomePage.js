@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import * as BooksAPI from '../../BooksAPI.js'
 import Bookshelf from '../Bookshelf.js'
 import {getAll} from '../../BooksAPI.js'
 
@@ -19,6 +20,17 @@ class HomePage extends React.Component {
     }
   }
 
+  updateBook = (book, shelf) => {
+      BooksAPI.update(book, shelf)
+      .then(_resp => {
+          book.shelf = shelf;
+          this.setState(state => ({
+          books: state.books.filter(books => books.id !== book.id).concat([book])
+      }));
+      });
+  };
+
+
   render () {
     return (
       <div className="app">
@@ -28,9 +40,9 @@ class HomePage extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf title="Currently Reading" books={this.state.books.filter((books) => books.shelf === "currentlyReading")}/>
-                <Bookshelf title="Want To Read" books={this.state.books.filter((books) => books.shelf === "wantToRead")}/>
-                <Bookshelf title="Read" books={this.state.books.filter((books) => books.shelf === "read")}/>
+                <Bookshelf updateBook={this.updateBook} title="Currently Reading" books={this.state.books.filter((books) => books.shelf === "currentlyReading")}/>
+                <Bookshelf updateBook={this.updateBook} title="Want To Read" books={this.state.books.filter((books) => books.shelf === "wantToRead")}/>
+                <Bookshelf updateBook={this.updateBook} title="Read" books={this.state.books.filter((books) => books.shelf === "read")}/>
               </div>
             </div>
               <div className="open-search">
