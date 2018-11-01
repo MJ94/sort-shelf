@@ -12,7 +12,9 @@ class HomePage extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf/>
+                <Bookshelf title="Currently Reading"/>
+                <Bookshelf title="Want To Read"/>
+                <Bookshelf title="Read"/>
               </div>
             </div>
               <div className="open-search">
