@@ -1,8 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Bookshelf from '../Bookshelf.js'
+import {getAll} from '../../BooksAPI.js'
 
 class HomePage extends React.Component {
+  state = {
+    books: []
+  }
+
+  async componentDidMount() {
+    try {
+      const books = await getAll();
+      this.setState({
+        books
+      });
+    } catch(e) {
+        console.log(e);
+    }
+  }
+
   render () {
     return (
       <div className="app">
