@@ -9,7 +9,6 @@ class SearchPage extends React.Component {
     query: "",
     results: []
   }
-}
 
 async componentDidMount() {
   try {
@@ -33,7 +32,7 @@ async componentDidMount() {
   };
 
   updateQuery = (query) => {
-    this.setState((query: query), this.submitSearch)
+    this.setState({query: query}, this.submitSearch)
   }
 
   submitSearch() {
