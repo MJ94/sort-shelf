@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../../BooksAPI.js'
 import {getAll} from '../../BooksAPI.js'
+import Book from '../Book.js'
 
 class SearchPage extends React.Component {
   state = {
@@ -23,7 +24,7 @@ async componentDidMount() {
 
   updateBook = (book, shelf) => {
       BooksAPI.update(book, shelf)
-      .then(_resp => {
+      .then(response => {
           book.shelf = shelf;
           this.setState(state => ({
           books: state.books.filter(books => books.id !== book.id).concat([book])
@@ -32,7 +33,7 @@ async componentDidMount() {
   };
 
   updateQuery = (query) => {
-    this.setState({query: query}, this.submitSearch)
+    this.setState({query}, this.submitSearch)
   }
 
   submitSearch() {
@@ -64,6 +65,9 @@ async componentDidMount() {
         </div>
         <div className="search-books-results">
           <ol className="books-grid"></ol>
+          {
+            this.state.results.map((book, key) => <Book updateBook={this.updateBook} book={book} key={key}/>)
+          }
         </div>
       </div>
     );
