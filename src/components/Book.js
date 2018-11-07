@@ -17,7 +17,7 @@ const Book = (props) => {
           </div>
         </div>
         <div className="book-title">{props.book.title || "No title found"}</div>
-        <div className="book-authors">{props.book.authors[0] || "No author found"}</div>
+        <div className="book-authors">{props.book.authors && props.book.authors[0] || "No author found"}</div>
       </div>
     </li>
   );
