@@ -18,3 +18,8 @@ Sort Shelf allows users of the app to track a limited number of books across thr
 
 ## Contributing
 * This repository is based off of [Udacity's](https://udacity.com) My Reads project in the [Front End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001). Pull requests are welcome, but will likely not be accepted at this time.
+
+## Acknowledgements and Thanks
+* Jason White
+* Ryan Waite
+* Forrest Walker
