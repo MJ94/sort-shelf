@@ -43,19 +43,21 @@ updateBookShelf = (book, shelf) => {
 render() {
     return (
       <div className="app">
-        <Route exact path="/" render={() => (
-          <HomePage
-            books={this.state.books}
-            updateBookShelf={this.updateBookShelf}
-          />
-        )} />
+        <Switch>
+          <Route exact path="/" render={() => (
+            <HomePage
+              books={this.state.books}
+              updateBookShelf={this.updateBookShelf}
+            />
+          )} />
 
-        <Route path="/search" render={() => (
-          <SearchPage
-            updateBookShelf={this.updateBookShelf}
-            books={this.state.books}
-          />
-        )} />
+          <Route path="/search" render={() => (
+            <SearchPage
+              updateBookShelf={this.updateBookShelf}
+              books={this.state.books}
+            />
+          )} />
+        </Switch>
 
       </div>
     )
