@@ -6,41 +6,33 @@ import Book from '../Book.js'
 
 class SearchPage extends React.Component {
   state = {
-    books: [],
     query: "",
     results: []
   }
 
-async componentDidMount() {
-  try {
-    const books = await getAll();
+  updateQuery = (query) => {
     this.setState({
-      books
-    });
-  } catch(e) {
-      console.log(e);
+      query
+    })
+    this.updateResults(query)
+  }
+
+updateResults = (query) => {
+  if(query) {
+    BooksAPI.search(query)
+    .then((results) => {
+      if(results.error) {
+        this.setState({
+          results: []
+        });
+      } else {
+        this.setState({
+          results
+        });
+      }
+    })
   }
 }
-
-  updateBook = (book, shelf) => {
-      BooksAPI.update(book, shelf)
-      .then(response => {
-          book.shelf = shelf;
-          this.setState(state => ({
-          books: state.books.filter(books => books.id !== book.id).concat([book])
-      }));
-      });
-  };
-
-  updateQuery = (query) => {
-    this.setState({query}, this.submitSearch)
-  }
-
-  submitSearch() {
-    if (this.state.query === "" || this.state.query === undefined) {
-      return this.setState({results: []});
-    }
-  }
 
   render () {
     return (
@@ -59,15 +51,36 @@ async componentDidMount() {
             <input
               type="text"
               placeholder="Search by title or author"
-              value={this.state.query} onChange={(event) => this.updateQuery(event.target.value)}/>
+              value={this.state.query}
+              onChange={(event) => this.updateQuery(event.target.value)}/>
 
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
-          {
-            this.state.results.map((book, key) => <Book updateBook={this.updateBook} book={book} key={key}/>)
-          }
+          <ol className="books-grid">
+              {
+                this.state.results.map(result => {
+                  let shelf = "none";
+
+                  this.props.books.map(book => (
+                    book.id === result.id ?
+                    shelf = book.shelf :
+                    ''
+                  ));
+
+                  return (
+                    <li key={result.id}>
+                      <Book
+                        book={result}
+                        moveShelf={this.props.updateBookShelf}
+                        currentShelf={shelf}
+                      />
+                    </li>
+                  )
+                })
+              }
+            </ol>
+
         </div>
       </div>
     );
