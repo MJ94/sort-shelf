@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../../BooksAPI.js'
-import {getAll} from '../../BooksAPI.js'
 import Book from '../Book.js'
 
 class SearchPage extends React.Component {
