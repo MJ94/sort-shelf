@@ -30,6 +30,10 @@ updateResults = (query) => {
         });
       }
     })
+  } else {
+    this.setState({
+      results: []
+    });
   }
 }
 
