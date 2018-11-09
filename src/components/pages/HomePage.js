@@ -18,9 +18,9 @@ class HomePage extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf updateBook={this.updateBook} title="Currently Reading" books={this.state.books.filter((books) => books.shelf === "currentlyReading")}/>
-                <Bookshelf updateBook={this.updateBook} title="Want To Read" books={this.state.books.filter((books) => books.shelf === "wantToRead")}/>
-                <Bookshelf updateBook={this.updateBook} title="Read" books={this.state.books.filter((books) => books.shelf === "read")}/>
+                <Bookshelf updateBookShelf={this.updateBookShelf} title="Currently Reading" books={this.state.books.filter((books) => books.shelf === "currentlyReading")}/>
+                <Bookshelf updateBookShelf={this.updateBookShelf} title="Want To Read" books={this.state.books.filter((books) => books.shelf === "wantToRead")}/>
+                <Bookshelf updateBookShelf={this.updateBookShelf} title="Read" books={this.state.books.filter((books) => books.shelf === "read")}/>
               </div>
             </div>
               <div className="open-search">

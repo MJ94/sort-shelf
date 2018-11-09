@@ -77,7 +77,7 @@ updateResults = (query) => {
                     <li key={result.id}>
                       <Book
                         book={result}
-                        updateBook={this.props.updateBookShelf}
+                        updateBookShelf={this.props.updateBookShelf}
                         currentShelf={shelf}
                       />
                     </li>
