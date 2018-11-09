@@ -9,17 +9,6 @@ class HomePage extends React.Component {
     books: []
   }
 
-  async componentDidMount() {
-    try {
-      const books = await getAll();
-      this.setState({
-        books
-      });
-    } catch(e) {
-        console.log(e);
-    }
-  }
-
   updateBook = (book, shelf) => {
       BooksAPI.update(book, shelf)
       .then(_resp => {
