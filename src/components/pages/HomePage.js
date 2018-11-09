@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from '../../BooksAPI.js'
 import Bookshelf from '../Bookshelf.js'
-import {getAll} from '../../BooksAPI.js'
 
 class HomePage extends React.Component {
   render () {
