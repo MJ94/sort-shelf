@@ -17,26 +17,11 @@ class SearchPage extends React.Component {
     this.updateResults(query)
   }
 
-updateResults = (query) => {
-  if(query) {
-    BooksAPI.search(query)
-    .then((results) => {
-      if(results.error) {
-        this.setState({
-          results: []
-        });
-      } else {
-        this.setState({
-          results
-        });
-      }
-    })
-  } else {
+  updateBooks = books => {
     this.setState({
-      results: []
+      books 
     });
   }
-}
 
   render () {
     return (
