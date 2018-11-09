@@ -9,17 +9,6 @@ class HomePage extends React.Component {
     books: []
   }
 
-  updateBook = (book, shelf) => {
-      BooksAPI.update(book, shelf)
-      .then(_resp => {
-          book.shelf = shelf;
-          this.setState(state => ({
-          books: state.books.filter(books => books.id !== book.id).concat([book])
-      }));
-      });
-  };
-
-
   render () {
     return (
       <div className="app">
