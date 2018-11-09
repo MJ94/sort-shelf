@@ -6,6 +6,7 @@ import {getAll} from '../../BooksAPI.js'
 
 class HomePage extends React.Component {
   render () {
+    const { updateBookShelf, books} = this.props;
     return (
       <div className="app">
           <div className="list-books">
@@ -14,9 +15,9 @@ class HomePage extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf updateBookShelf={this.updateBookShelf} title="Currently Reading" books={this.state.books.filter((books) => books.shelf === "currentlyReading")}/>
-                <Bookshelf updateBookShelf={this.updateBookShelf} title="Want To Read" books={this.state.books.filter((books) => books.shelf === "wantToRead")}/>
-                <Bookshelf updateBookShelf={this.updateBookShelf} title="Read" books={this.state.books.filter((books) => books.shelf === "read")}/>
+                <Bookshelf updateBookShelf={updateBookShelf} title="Currently Reading" books={books.filter((books) => books.shelf === "currentlyReading")}/>
+                <Bookshelf updateBookShelf={updateBookShelf} title="Want To Read" books={books.filter((books) => books.shelf === "wantToRead")}/>
+                <Bookshelf updateBookShelf={updateBookShelf} title="Read" books={books.filter((books) => books.shelf === "read")}/>
               </div>
             </div>
               <div className="open-search">
