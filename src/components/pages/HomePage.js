@@ -5,10 +5,6 @@ import Bookshelf from '../Bookshelf.js'
 import {getAll} from '../../BooksAPI.js'
 
 class HomePage extends React.Component {
-  state = {
-    books: []
-  }
-
   render () {
     return (
       <div className="app">
