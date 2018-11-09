@@ -30,15 +30,25 @@ componentDidMount() {
 */
 
 updateBookShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf)
-    .then(() => {
-      BooksAPI.getAll()
-      .then((books) => {
-        this.setState({ books })
-      })
-    })
-  }
-
+  BooksAPI.update(book, shelf).then(res => {
+    this.setState(prevstate => {
+      const books = [...prevstate.books]
+      const bookPos = books.findIndex(b => b.id === book.id)
+      if (bookPos >= 0) {
+        books[bookPos].shelf = shelf;
+      } else {
+        BooksAPI.get(book.id).then(res => {
+          if (!res.error) {
+            books.push(res)
+          }
+        })
+      }
+      return {
+        books
+      }
+    });
+  })
+}
 
 render() {
     return (
