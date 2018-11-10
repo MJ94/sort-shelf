@@ -7,7 +7,11 @@ const Book = ({ updateBookShelf, book }) => {
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : "https://dummyimage.com/128x193/2e7c31/fff.png&text=Cover+Missing"})` }}></div>
           <div className="book-shelf-changer">
-            <select value={book.shelf || "none"} onChange={(event) => { updateBookShelf(book, event.target.value) }}>
+            <select
+              value={book.shelf ? book.shelf : "none"}
+              onChange={event => {
+                updateBookShelf(book, event.target.value);
+               }}>
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
