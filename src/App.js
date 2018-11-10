@@ -54,14 +54,16 @@ render() {
     return (
       <div className="app">
         <Switch>
-          <Route exact path="/" render={() => (
+          <Route exact path="/"
+            render={() => (
             <HomePage
               books={this.state.books}
               updateBookShelf={this.updateBookShelf}
             />
           )} />
 
-          <Route path="/search" render={() => (
+          <Route path="/search"
+            render={() => (
             <SearchPage
               updateBookShelf={this.updateBookShelf}
               books={this.state.books}
