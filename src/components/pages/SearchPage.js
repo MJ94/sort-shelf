@@ -46,8 +46,9 @@ class SearchPage extends React.Component {
           newBooks.forEach((newBook, index) => {
             this.props.books.forEach(book => {
               if (newBook.id === book.id) {
-                newBook.shelf === book.shelf;
+                newBook.shelf = book.shelf;
               }
+              return book;
             });
           });
           this.updateBooks(newBooks);
