@@ -7,7 +7,7 @@ import {DebounceInput} from 'react-debounce-input';
 class SearchPage extends React.Component {
   state = {
     query: "",
-    results: []
+    books: []
   }
 
   updateQuery = (query) => {
@@ -19,8 +19,43 @@ class SearchPage extends React.Component {
 
   updateBooks = books => {
     this.setState({
-      books 
+      books
     });
+  }
+
+  updateResults = query => {
+    if (query) {
+      BooksAPI.search(query).then(results => {
+        if (results.error) {
+          this.updateBooks([]);
+        } else {
+          const newBooks = results.filter(book => {
+            if (
+              book.id &&
+              book.imageLinks &&
+              book.imageLinks.smallThumbnail &&
+              book.title &&
+              book.authors
+            ) {
+              return true;
+            } else {
+              return false;
+            }
+          })
+
+          newBooks.forEach((newBook, index) => {
+            this.props.books.forEach(book => {
+              if (newBook.id === book.id) {
+                newBook.shelf === book.shelf;
+              }
+            });
+          });
+          this.updateBooks(newBooks);
+        }
+      })
+    } else {
+      this.updateBooks([]);
+    }
   }
 
   render () {
@@ -48,22 +83,12 @@ class SearchPage extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-              {
-                this.state.results.map(result => {
-                  let shelf = "none";
-
-                  this.props.books.map(book => (
-                    book.id === result.id ?
-                    shelf = book.shelf :
-                    ''
-                  ));
-
+              {this.state.books.map(book => {
                   return (
-                    <li key={result.id}>
+                    <li key={book.id}>
                       <Book
-                        book={result}
+                        book={book}
                         updateBookShelf={this.props.updateBookShelf}
-                        currentShelf={shelf}
                       />
                     </li>
                   )
