@@ -29,29 +29,15 @@ class SearchPage extends React.Component {
         if (results.error) {
           this.updateBooks([]);
         } else {
-          const newBooks = results.filter(book => {
-            if (
-              book.id &&
-              book.imageLinks &&
-              book.imageLinks.smallThumbnail &&
-              book.title &&
-              book.authors
-            ) {
-              return true;
-            } else {
-              return false;
-            }
-          })
-
-          newBooks.forEach((newBook, index) => {
-            this.props.books.forEach(book => {
-              if (newBook.id === book.id) {
-                newBook.shelf = book.shelf;
+          results.forEach((result, index) => {
+            this.props.books.map(book => {
+              if (result.id === book.id) {
+                result.shelf = book.shelf
               }
-              return book;
-            });
-          });
-          this.updateBooks(newBooks);
+              return result;
+            })
+          })
+          this.updateBooks(results);
         }
       })
     } else {
