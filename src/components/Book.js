@@ -35,7 +35,7 @@ const Book = ({ book, updateBookShelf }) => {
         </div>
         <div className="book-title">{book.title || "No title found"}</div>
         <div className="book-authors">
-          {book.authors ? book.authors[0] : "No author found"}
+          {book.authors ? book.authors.join(", ") : "No author found"}
         </div>
       </div>
     </li>
