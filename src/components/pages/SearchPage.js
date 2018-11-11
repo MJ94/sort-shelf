@@ -60,6 +60,7 @@ class SearchPage extends React.Component {
               you don't find a specific author or title. Every search is limited by search terms.
             */}
             <DebounceInput
+              autoFocus
               debounceTimeout={300}
               type="text"
               placeholder="Search by title or author"
